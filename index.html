@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Thiago Heckler — Desenvolvedor de Software</title>
+  <meta name="description" content="Thiago Heckler, desenvolvedor de software em São Miguel do Oeste/SC. Sistemas web sob medida com Laravel, Spring Boot, Python e React.">
+  <meta name="theme-color" content="#0c0e0b">
+  <meta property="og:title" content="Thiago Heckler — Desenvolvedor de Software">
+  <meta property="og:description" content="Sistemas web sob medida: do banco de dados ao deploy.">
+  <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="nav">
+    <a class="nav__brand" href="#topo" aria-label="Início">TH<span>.</span></a>
+    <nav class="nav__links" aria-label="Seções">
+      <a href="#sobre">Sobre</a>
+      <a href="#stack">Stack</a>
+      <a href="#projetos">Projetos</a>
+      <a href="#contato" class="nav__cta">Contato</a>
+    </nav>
+  </header>
+
+  <!-- HERO: o scroll controla o filme gerado no Higgsfield -->
+  <section class="scrub" id="topo" aria-label="Apresentação">
+    <div class="scrub__sticky">
+      <video class="scrub__video" id="scrubVideo" muted playsinline preload="auto" aria-hidden="true"></video>
+      <div class="scrub__shade"></div>
+
+      <div class="scrub__copy">
+        <div class="beat is-active" data-from="0" data-to="0.28">
+          <p class="eyebrow">Desenvolvedor de software · São Miguel do Oeste/SC</p>
+          <h1 class="display">Thiago<br>Heckler<span class="dot">.</span></h1>
+          <p class="lead">Eu pego as peças soltas do seu negócio e transformo em um sistema que funciona.</p>
+        </div>
+        <div class="beat" data-from="0.3" data-to="0.62">
+          <p class="eyebrow">01 — Estrutura</p>
+          <h2 class="display display--md">Banco de dados, regras de negócio e API, encaixados camada por camada.</h2>
+        </div>
+        <div class="beat" data-from="0.64" data-to="1.01">
+          <p class="eyebrow">02 — Entrega</p>
+          <h2 class="display display--md">Um sistema sólido, no ar, que aguenta o dia a dia da empresa.</h2>
+          <a class="btn" href="#contato">Vamos conversar</a>
+        </div>
+      </div>
+
+      <div class="scrub__progress" aria-hidden="true"><span id="scrubBar"></span></div>
+      <p class="scrub__hint" aria-hidden="true">role para montar ↓</p>
+    </div>
+  </section>
+
+  <main>
+    <section class="section" id="sobre">
+      <div class="wrap grid-2">
+        <div>
+          <p class="eyebrow reveal">Sobre</p>
+          <h2 class="title reveal">Software sob medida, feito por quem entende o problema antes de escrever código.</h2>
+        </div>
+        <div class="prose">
+          <p class="reveal">Sou desenvolvedor independente e estudante de Ciência da Computação na UNOESC. Construo sistemas web para empresas que cansaram de planilha, de sistema genérico que não conversa com a rotina delas, ou de depender de processos manuais.</p>
+          <p class="reveal">Trabalho do começo ao fim: levanto requisitos, modelo o banco, desenvolvo o back-end e o front-end, publico em servidor próprio e acompanho depois que está no ar. Tenho experiência prática com a área fiscal brasileira (NF-e, NFC-e, SPED, ICMS), o que ajuda quando o sistema precisa lidar com nota e imposto.</p>
+          <ul class="facts reveal">
+            <li><strong>Multi-tenant</strong><span>SaaS com vários clientes no mesmo sistema</span></li>
+            <li><strong>Pagamentos</strong><span>PIX, cartão e integrações</span></li>
+            <li><strong>Deploy</strong><span>VPS, Docker, domínio e SSL</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--light" id="stack">
+      <div class="wrap">
+        <p class="eyebrow reveal">Stack</p>
+        <h2 class="title reveal">Ferramentas que uso no dia a dia.</h2>
+        <div class="stack">
+          <article class="stack__item reveal"><span class="mono">PHP 8.4</span><h3>Laravel 12</h3><p>APIs, painéis administrativos, filas e tempo real com Reverb.</p></article>
+          <article class="stack__item reveal"><span class="mono">Java 25</span><h3>Spring Boot</h3><p>Serviços robustos, arquitetura limpa e testes.</p></article>
+          <article class="stack__item reveal"><span class="mono">Python 3.12</span><h3>FastAPI &amp; automação</h3><p>APIs rápidas, scripts, tratamento de dados e integrações com IA.</p></article>
+          <article class="stack__item reveal"><span class="mono">TypeScript</span><h3>React</h3><p>Interfaces rápidas e responsivas, do painel ao app do cliente.</p></article>
+          <article class="stack__item reveal"><span class="mono">SQL / NoSQL</span><h3>PostgreSQL · MySQL · MongoDB</h3><p>Modelagem, índices e consultas que continuam rápidas com o tempo.</p></article>
+          <article class="stack__item reveal"><span class="mono">Infra</span><h3>Docker &amp; Linux</h3><p>Deploy em VPS, containers e ambientes reproduzíveis.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="projetos">
+      <div class="wrap">
+        <p class="eyebrow reveal">Projetos</p>
+        <h2 class="title reveal">Alguns sistemas que construí.</h2>
+        <div class="projects">
+          <article class="project reveal">
+            <div class="project__num mono">01</div>
+            <div>
+              <h3>OKM Cobranças</h3>
+              <p>Plataforma SaaS multi-tenant de cobrança. Gera QR Code PIX, agenda cobranças automáticas e usa IA para analisar logs.</p>
+              <ul class="tags"><li>FastAPI</li><li>PostgreSQL</li><li>React 19</li><li>LLM</li></ul>
+            </div>
+            <a class="project__link" href="https://okmcobrancas.com.br" target="_blank" rel="noopener">Ver no ar ↗</a>
+          </article>
+          <article class="project reveal">
+            <div class="project__num mono">02</div>
+            <div>
+              <h3>SaaS para pizzarias</h3>
+              <p>Cardápio, pedidos e acompanhamento em tempo real, com checkout em PIX, cartão ou dinheiro e um painel separado para cada pizzaria.</p>
+              <ul class="tags"><li>Laravel</li><li>MySQL</li><li>Redis</li><li>Reverb</li></ul>
+            </div>
+          </article>
+          <article class="project reveal">
+            <div class="project__num mono">03</div>
+            <div>
+              <h3>Mais Músculo</h3>
+              <p>Sistema desenvolvido para uma academia.</p>
+              <ul class="tags"><li>Web</li></ul>
+            </div>
+          </article>
+          <article class="project reveal">
+            <div class="project__num mono">04</div>
+            <div>
+              <h3>Giro Market</h3>
+              <p>Em desenvolvimento.</p>
+              <ul class="tags"><li>Em andamento</li></ul>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--light" id="processo">
+      <div class="wrap">
+        <p class="eyebrow reveal">Como trabalho</p>
+        <h2 class="title reveal">Quatro etapas, sem surpresa no meio do caminho.</h2>
+        <ol class="steps">
+          <li class="reveal"><span class="mono">01</span><h3>Conversa</h3><p>Entendo como sua empresa funciona hoje e onde o processo trava.</p></li>
+          <li class="reveal"><span class="mono">02</span><h3>Proposta</h3><p>Escopo, prazo e valor claros antes de começar.</p></li>
+          <li class="reveal"><span class="mono">03</span><h3>Desenvolvimento</h3><p>Entregas parciais para você testar e ajustar no caminho.</p></li>
+          <li class="reveal"><span class="mono">04</span><h3>No ar</h3><p>Publicação, treinamento e suporte depois da entrega.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section contact" id="contato">
+      <div class="wrap">
+        <p class="eyebrow reveal">Contato</p>
+        <h2 class="display display--lg reveal">Tem um processo que<br>precisa virar sistema<span class="dot">?</span></h2>
+        <div class="contact__actions reveal">
+          <!-- TODO: troque pelo seu e-mail e WhatsApp -->
+          <a class="btn" href="mailto:contato@thiagoheckler.com.br">contato@thiagoheckler.com.br</a>
+          <a class="btn btn--ghost" href="https://github.com/ThiagoHeckler" target="_blank" rel="noopener">GitHub ↗</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer__row">
+      <span>© <span id="ano"></span> Thiago Heckler</span>
+      <span class="mono">São Miguel do Oeste · SC</span>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
