@@ -15,7 +15,7 @@ python3 -m http.server 8080
 
 ## Hospedar a mídia no próprio servidor
 
-Por padrão o vídeo vem do CDN do Higgsfield. Para não depender dele:
+Por padrão o vídeo vem do CDN do Higgsfield (carregado direto pela URL, compatível com CSPs que bloqueiam `blob:`). Para não depender dele:
 
 ```bash
 ./scripts/baixar-midia.sh   # salva em assets/

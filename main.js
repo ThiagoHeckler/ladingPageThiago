@@ -32,10 +32,14 @@ document.getElementById("ano").textContent = new Date().getFullYear();
   let current = 0;  // tempo exibido (suavizado)
   let ready = false;
 
-  loadVideo(video, MEDIA.video).then(() => {
-    ready = true;
+  loadVideo(video, MEDIA.video).then(async (ok) => {
+    if (!ok) return;
+    // iOS só desenha quadros depois de um play(); vídeo mudo pode dar play sozinho
+    try { await video.play(); } catch {}
     video.pause();
+    ready = true;
     if (reduceMotion) video.currentTime = video.duration;
+    onScroll();
   });
 
   function progress() {
@@ -74,34 +78,42 @@ document.getElementById("ano").textContent = new Date().getFullYear();
   requestAnimationFrame(tick);
 })();
 
-// Baixa o vídeo inteiro como blob (seek instantâneo); se o CORS bloquear,
-// usa a URL direto. Tenta cada fonte em ordem.
+// Carrega o vídeo direto pela URL. Não usa blob: porque muitas hospedagens
+// (StayCloud inclusive) mandam uma CSP "media-src 'self' https:" que bloqueia
+// blob: sem disparar erro. O vídeo é all-intra, então o seek direto já é suave.
+// Tenta cada fonte em ordem; se uma não responder em 15s, passa para a próxima.
 async function loadVideo(video, sources) {
   for (const src of sources) {
     if (!src || src.startsWith("__")) continue;
-    try {
-      const res = await fetch(src);
-      if (!res.ok) throw new Error(res.status);
-      video.src = URL.createObjectURL(await res.blob());
-    } catch {
-      if (src.startsWith("assets/")) continue; // arquivo local não existe
-      video.src = src;
-    }
-    try {
-      await new Promise((ok, fail) => {
-        video.addEventListener("loadedmetadata", ok, { once: true });
-        video.addEventListener("error", fail, { once: true });
-      });
-      return;
-    } catch { /* tenta a próxima fonte */ }
+    if (src.startsWith("assets/") && !(await exists(src))) continue;
+    video.src = src;
+    video.load();
+    const ok = await new Promise((resolve) => {
+      const done = (v) => { clearTimeout(timer); video.onloadedmetadata = video.onerror = null; resolve(v); };
+      const timer = setTimeout(() => done(false), 15000);
+      video.onloadedmetadata = () => done(true);
+      video.onerror = () => done(false);
+    });
+    if (ok) return true;
   }
+  console.warn("Vídeo do hero não carregou; mantendo o pôster.");
+  return false;
+}
+
+// Confere se um arquivo local existe de verdade. Hospedagens que devolvem o
+// index.html para qualquer caminho respondem 200, por isso checa o content-type.
+async function exists(src) {
+  try {
+    const r = await fetch(src, { method: "HEAD" });
+    const type = r.headers.get("content-type") || "";
+    return r.ok && !type.includes("text/html");
+  } catch { return false; }
 }
 
 async function firstAvailable(sources) {
   for (const src of sources) {
     if (!src || src.startsWith("__")) continue;
-    if (!src.startsWith("assets/")) return src;
-    try { if ((await fetch(src, { method: "HEAD" })).ok) return src; } catch {}
+    if (!src.startsWith("assets/") || (await exists(src))) return src;
   }
   return null;
 }
